@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Клікер кнопка з ефектами</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #click-button {
+            width: 150px;
+            height: 150px;
+            border: none;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        #click-button:active {
+            transform: scale(0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+
+        #counter {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        /* Ефект спалаху при натисканні */
+        #flash {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.6);
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s ease-out;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Клікер кнопка з ефектами</h1>
+    <button id="click-button">
+        <img src="чотирка.jpg" alt="Кнопка" id="click-image" width="150" height="150">
+    </button>
+    
+    <div id="counter">Кількість кліків: 0</div>
+
+    <!-- Ефект спалаху -->
+    <div id="flash"></div>
+
+    <script>
+        let counter = 0;
+        const flash = document.getElementById("flash");
+
+        document.getElementById("click-button").addEventListener("click", function() {
+            counter++;
+            document.getElementById("counter").innerText = "Кількість кліків: " + counter;
+
+            // Ефект спалаху
+            flash.style.opacity = 1;
+            setTimeout(() => {
+                flash.style.opacity = 0;
+            }, 100);
+        });
+    </script>
+
+</body>
+</html>
